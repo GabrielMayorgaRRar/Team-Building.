@@ -1,16 +1,37 @@
 #include <stdio.h>
+#include <stdbool.h>
+
+#define PI 3.1416
 
 void main_menu();
 void Geometry_2D();
 void Geometry_main_menu();
+void Geometry_3D();
+void Geometry_main_menu_2();
 
 int main()
 {
+    bool bandera = false;
     int resultado;
-    char option;
+    char option, decision;
+    main_menu();
     do
     {
-        main_menu();
+        if (bandera == true)
+        {
+
+            printf("¿Quieres hacer otra operación? \n(Y -> Yes) (N -> No)\n");
+            scanf(" %c", &decision);
+            if (decision == 'N')
+            {
+                option = 'I';
+            }
+            else if (decision == 'Y')
+            {
+                main_menu();
+            }
+        }
+        bandera = true;
         printf("Opcion: ");
         scanf(" %c", &option);
         switch (option)
@@ -35,7 +56,8 @@ int main()
             Geometry_2D();
             break;
         case 'G':
-
+            printf("\n\n");
+            Geometry_3D();
             break;
         case 'H':
 
@@ -74,7 +96,7 @@ void Geometry_main_menu()
 void Geometry_2D()
 {
     char option;
-    int A, B, C, D;
+    int A, B, C, D, result;
     Geometry_main_menu();
     printf("Opcion: ");
     scanf(" %c", &option);
@@ -84,30 +106,79 @@ void Geometry_2D()
         printf("A continuacion introduzca los 4 lados del trapecio\n");
         printf("A = ");
         scanf("%d", &A);
-        printf("\nB = ");
+        printf("B = ");
         scanf("%d", &B);
-        printf("\nC = ");
+        printf("C = ");
         scanf("%d", &C);
-        printf("\nD = ");
+        printf("D = ");
         scanf("%d", &D);
-        int result = A + B + C + D;
+        result = A + B + C + D;
         printf("El perimetro del Rombo es: ' %d '\n\n", result);
         break;
     case 'B':
         printf("A continuacion introduzca un lado del Rombo\n");
         printf("Lado = ");
         scanf("%d", &A);
-        int result = A * 4;
+        result = A * 4;
         printf("El perimetro del Rombo es: ' %d '\n\n", result);
         break;
     case 'C':
         printf("A continuacion introduzca un lado del Hexágono\n");
         printf("Lado = ");
         scanf("%d", &A);
-        int result = A * 6;
+        result = A * 6;
         printf("El perimetro del Hexágono es: ' %d '\n\n", result);
         break;
     default:
         break;
     }
+}
+
+void Geometry_3D()
+{
+    char option;
+    float A, B, C, D;
+    float result2;
+    Geometry_main_menu_2();
+    printf("Opcion: ");
+    scanf(" %c", &option);
+    switch (option)
+    {
+    case 'A':
+        printf("A continuacion introduzca el valor del radio de la Esfera:\n");
+        printf("Radio = ");
+        scanf("%f", &A);
+        result2 = (A*A*A) * 3.1416 * (4.0/3.0);
+        printf("El Volumen de la Esfera es: ' %f '\n\n", result2);
+        break;
+    case 'B':
+        printf("A continuacion introduzca el valor del radio de la base\n y despues la altura del Cono:\n");
+        printf("Radio = ");
+        scanf("%f", &A);
+        printf("Altura = ");
+        scanf("%f", &B);
+        result2 = (1.0 / 3.0) * 3.14159 * (A * A) * B;
+        printf("El Volumen del Cono es: ' %0.3f '\n\n", result2);
+        break;
+    case 'C':
+        printf("A continuacion introduzca el valor del la longitud de un lado de la base\n y despues la altura de la piramide:\n");
+        printf("Longitud = ");
+        scanf("%f", &A);
+        printf("Altura = ");
+        scanf("%f", &B);
+        result2 = (1.0 / 3.0) * (A * A) * B;
+        printf("El Volumen del piramide es: ' %0.3f '\n\n", result2);
+        break;
+    default:
+        break;
+    }
+}
+
+void Geometry_main_menu_2()
+{
+    printf("¿De que figura quiere calcular el Volumen?");
+    printf("(Para escojer el tipo de problema, escriba la letra correspondiente)\n");
+    printf("A - Esfera\n");
+    printf("B - Cono\n");
+    printf("C - Pirámide Cuadrada\n");
 }
