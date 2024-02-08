@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 #define PI 3.1416
 
@@ -8,6 +9,10 @@ void Geometry_2D();
 void Geometry_main_menu();
 void Geometry_3D();
 void Geometry_main_menu_2();
+void factorial();
+void Arithmetic();
+void menu_ari();
+long long int operation_facto(int x);
 
 int main()
 {
@@ -46,7 +51,7 @@ int main()
 
             break;
         case 'D':
-
+            Arithmetic();
             break;
         case 'E':
 
@@ -60,7 +65,7 @@ int main()
             Geometry_3D();
             break;
         case 'H':
-
+            factorial();
             break;
         default:
             break;
@@ -181,4 +186,51 @@ void Geometry_main_menu_2()
     printf("A - Esfera\n");
     printf("B - Cono\n");
     printf("C - Pirámide Cuadrada\n");
+}
+
+long long int operation_facto(int x){
+  if (x==1)
+    return 1;
+  return x*operation_facto(x-1);
+}
+
+void factorial(){
+    int Number;
+    printf("Acontinuacion introduzca el numero del que quiere el factorial: ");
+    scanf("%d", &Number);
+    long long int result = operation_facto(Number);
+    printf("El factorial de ' %d ' es ' %lld '\n", Number, result);
+}
+
+void Arithmetic(){
+    menu_ari(); // Ahora menu_ari() está declarado antes de su uso
+    char option;
+    double numero, raiz, result;
+    printf("Opcion: ");
+    scanf(" %c", &option);
+    switch (option)
+    {
+    case 'A':
+        printf("Ingrese el numero: ");
+        scanf("%lf", &numero);
+        result = sqrt(numero);
+        printf("La raiz cuadrada de %.2lf es %.2lf\n", numero, result);
+        break;
+    case 'B':
+        
+        printf("Ingrese el numero a elevar al cuadrado ");
+        scanf("%lf", &numero);
+        result = numero*numero;
+        printf("La potencia cuadrada de %.2lf es %.2lf\n", numero, result);
+        break;
+    default:
+        break;
+    }
+}
+
+void menu_ari(){
+    printf("¿Que operacion quiere hacer?");
+    printf("(Para escojer el tipo de problema, escriba la letra correspondiente)\n");
+    printf("A - Raíz cuadradada de un número\n");
+    printf("B - Potencia cuadrada de un número.\n");
 }
