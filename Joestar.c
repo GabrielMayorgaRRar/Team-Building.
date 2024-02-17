@@ -63,4 +63,12 @@ int main()
         }
         printf("\n");
     }
+
+    for (int i = 0; i < Filas; i++)
+    {
+        free(*(matriz_original + i));
+        free(*(matriz_piramide + i));
+    }
+    free(matriz_original);
+    free(matriz_piramide);
 }
