@@ -34,7 +34,6 @@ typedef struct triangulo
     TDato base;
     TDato ladoA;
     TDato ladoB;
-    TDato ladoC;
 } TTriangulo;
 
 typedef struct cuadrado
@@ -44,6 +43,7 @@ typedef struct cuadrado
 
 TFiguras crear_arreglo(short figuras);
 void calcular_informacion(TFiguras arreglo, short figuras);
+void liberar_memoria(TFiguras arreglo, short figuras);
 
 int main()
 {
@@ -70,7 +70,7 @@ TFiguras crear_arreglo(short figuras)
 
 void calcular_informacion(TFiguras arreglo, short figuras)
 {
-    for (TFigura *pt = (TFigura *)arreglo; pt < ((TFigura *)arreglo) + figuras; pt++)
+    for (TFigura *pt = (TFigura *)arreglo; pt < (TFigura *)arreglo + figuras; pt++)
     {
         switch (pt->tipo)
         {
@@ -83,16 +83,26 @@ void calcular_informacion(TFiguras arreglo, short figuras)
             pt->area = ((TTriangulo *)pt->informacionAdicional)->base * ((TTriangulo *)pt->informacionAdicional)->altura / 2;
             pt->perimetro = ((TTriangulo *)pt->informacionAdicional)->ladoA +
                             ((TTriangulo *)pt->informacionAdicional)->ladoB +
-                            ((TTriangulo *)pt->informacionAdicional)->ladoC;
+                            ((TTriangulo *)pt->informacionAdicional)->base;
             break;
 
         case CUADRADO:
             pt->area = ((TCuadrado *)pt->informacionAdicional)->lado * ((TCuadrado *)pt->informacionAdicional)->lado;
             pt->perimetro = 4 * ((TCuadrado *)pt->informacionAdicional)->lado;
             break;
+
         default:
             puts("Figura Invalida");
             break;
         }
     }
+}
+
+void liberar_memoria(TFiguras arreglo, short figuras)
+{
+    for (TFigura *pt = arreglo; pt < (TFigura *)arreglo; pt++)
+    {
+        free(pt);
+    }
+    free(arreglo);
 }
