@@ -139,8 +139,6 @@ void elimina_x(TNodo **cab, TDato dato)
       }
     }
   }
-  free(aux);
-  free(ant);
 }
 
 void impresion(TNodo *cab)
