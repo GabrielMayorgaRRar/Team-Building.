@@ -123,7 +123,7 @@ void impresion(TNodo *cab) {
 }
 
 void elimina_al_principio(TNodo **cab) {
-  if (*cab != NULL) {
+  if (*cab == NULL) {
     return;
   }
   TNodo *tmp = *cab;
