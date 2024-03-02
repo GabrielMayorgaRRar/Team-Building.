@@ -165,4 +165,6 @@ void vaciar_lista(TNodo **cab) {
     actual = siguiente;
   }
   *cab = NULL;
+  free(actual);
+  free(siguiente);
 }
