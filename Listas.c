@@ -89,7 +89,6 @@ TNodo *crea_nodo(TDato dato) {
 }
 
 void insercion_final(TDato dato, TNodo **cab) {
-  TNodo *corre = *cab;
   if (*cab == NULL) {
     *cab = crea_nodo(dato);
   } else {
@@ -153,6 +152,7 @@ void eliminacion_al_final(TNodo **cab) {
             }
         }
     }
+    free(aux);
 }
 
 void vaciar_lista(TNodo **cab) {
