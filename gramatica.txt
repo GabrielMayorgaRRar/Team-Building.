@@ -1,5 +1,12 @@
-S -> aS
-S -> aB
-B -> bC
-C -> aC
-C -> a
+A->sD
+A->rR
+A->aF
+A->dD
+B->cC
+C->fF
+D->aB
+F->fT
+F->bB
+F->aA
+R->f
+T->dR
