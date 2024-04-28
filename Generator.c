@@ -475,7 +475,7 @@ void Proceso_2(TNodoMagic **cbs, TGramaticc **cab)
   for (auxD = *cbs; auxD->Next != NULL; auxD = auxD->Next)
   {
     ban2 = false;
-    printf("i = %d", cont + 1);
+    printf("\ni = %d", cont + 1);
     xi = auxD->Magic_t;
     auxDG = (*cab + cont);
     printf("   %c = %s\n", auxDG->Magic_t, auxDG->Info);
@@ -589,7 +589,7 @@ void Proceso_3(TNodoMagic **cbs, TGramaticc **cab)
   for (; auxD->After != auxD3->After; auxD = auxD->After)
   {
     ban2 = false;
-    printf("i = %d", cont + 1);
+    printf("\ni = %d", cont + 1);
     xi = auxD->Magic_t;
     auxDG = (*cab + cont);
     printf("   %c = %s\n", auxDG->Magic_t, auxDG->Info);
