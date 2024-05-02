@@ -26,3 +26,18 @@ short abrir_diccionario_de_datos(const char *nombre)
     fclose(ptr);
     return EXIT_SUCCESS;
 }
+
+void initializeDataDictionary(const char *filename)
+{
+    long header = -1L;
+    FILE *ptr = fopen(filename, "wb");
+    if (ptr == NULL)
+    {
+        fprintf(stderr, "FAILED TO OPEN THE DATA DICTIONARY");
+    }
+    else
+    {
+        fwrite(&header, sizeof(header), 1, ptr);
+    }
+    fclose(ptr);
+}
