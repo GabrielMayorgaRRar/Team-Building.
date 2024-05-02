@@ -39,7 +39,7 @@ void procesar_opcion_seleccionada(OpcionMenu opcionSeleccionada)
     switch (opcionSeleccionada)
     {
     case NUEVO_DICCIONARIO:
-        leer_nombre("Ingresa el nombre del ciccionario: ", nombreDiccionario, MAX_LINE);
+        leer_nombre("Ingresa el nombre del diccionario: ", nombreDiccionario, MAX_LINE);
         inicializar_diccionario(nombreDiccionario);
         if (abrir_diccionario_de_datos(nombreDiccionario) == EXIT_SUCCESS)
         {
