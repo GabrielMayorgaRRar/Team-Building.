@@ -2,7 +2,7 @@ CC = gcc
 
 SRC = main.c diccionario.c
 
-TARGET = diccionario
+TARGET = a
 
 all:
 	${CC} ${SRC} -o ${TARGET}.out
