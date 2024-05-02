@@ -7,5 +7,6 @@
 
 void inicializar_diccionario(const char *nombre);
 short abrir_diccionario_de_datos(const char *nombre);
+void initializeDataDictionary(const char *filename);
 
 #endif
