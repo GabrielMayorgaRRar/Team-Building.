@@ -85,3 +85,17 @@ void limpiar_buffer(void)
     {
     }
 }
+
+int searchDataEntity(FILE *dataDictionary, long header, const char *entityName)
+{
+    long headerValue;
+    fseek(dataDictionary, header, SEEK_SET);
+    fread(&headerValue, sizeof(headerValue), 1, dataDictionary);
+    if (headerValue == -1)
+        return EXIT_FAILURE;
+    char currentEntity[50];
+    long nextHeaderPointer;
+    fseek(dataDictionary, headerValue,SEEK_SET);
+    fread(&currentEntity, 50, 1, dataDictionary);
+
+    }

@@ -20,5 +20,6 @@ short entrada_de_usuario(void);
 void procesar_opcion_seleccionada(OpcionMenu opcionSeleccionada);
 void leer_nombre(const char *prompt, char *buffer, size_t tamanio);
 void limpiar_buffer(void);
+int searchDataEntity(FILE *dataDictionary, long header, const char *entityName);
 
 #endif

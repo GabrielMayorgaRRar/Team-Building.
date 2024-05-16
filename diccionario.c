@@ -14,8 +14,6 @@ void inicializar_diccionario(const char *nombre)
         fwrite(&header, sizeof(header), 1, ptr);
     }
     fclose(ptr);
-
-   
 }
 
 short abrir_diccionario_de_datos(const char *nombre)
