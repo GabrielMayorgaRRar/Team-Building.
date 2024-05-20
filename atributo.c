@@ -26,6 +26,8 @@ int nuevo_atributp(FILE *diccionarioDeDatos, TAtributo *atributoTemporal)
     return operacionResultado;
 }
 
+//PEDIR NOMBRE DE ENTIDAD, Buscar entidad(No sirve por que no dice si existe) si la encuentra, 
+
 int agregar_atributo(FILE *diccionarioDeDatos, TAtributo *datoAtributo)
 {
     int operacionResultado = EXIT_SUCCESS;
@@ -36,7 +38,7 @@ int agregar_atributo(FILE *diccionarioDeDatos, TAtributo *datoAtributo)
     posicionNuevoAtributo = ftell(diccionarioDeDatos);
     datoAtributo->direccionArchivo = posicionNuevoAtributo;
 
-    // Agrega el nombre del atributp
+    // Agrega el nombre del atributo
     fwrite(&datoAtributo->nombre, sizeof(char), NOMBRE_ATRIBUTO, diccionarioDeDatos);
     // Agrega el tipo del atributo
     fwrite(&datoAtributo->tipo, sizeof(TipoAtributo), 1, diccionarioDeDatos);
