@@ -41,24 +41,34 @@ void procesar_opcion_seleccionada(OpcionMenu opcionSeleccionada)
     case NUEVO_DICCIONARIO:
         leer_nombre("Ingresa el nombre del diccionario: ", nombreDiccionario, MAX_LINE);
         inicializar_diccionario(nombreDiccionario);
-        if (abrir_diccionario_de_datos(nombreDiccionario) == EXIT_SUCCESS)
-        {
-            puts("El diccionario de datos fue abierto");
-        }
         break;
     case ABRIR_DICCIONARIO:
-        leer_nombre("Ingresa el nombre del ciccionario: ", nombreDiccionario, MAX_LINE);
-        if (abrir_diccionario_de_datos(nombreDiccionario) == EXIT_SUCCESS)
-        {
-            puts("El diccionario de datos fue abierto");
-        }
+        leer_nombre("Ingresa el nombre del diccionario: ", nombreDiccionario, MAX_LINE);
         break;
     case CERRAR_PROGRAMA:
         puts("Saliendo...");
         break;
     default:
-        puts("Opcion no valida");
+        puts("Opcion no valida, intenta de nuevo");
         break;
+    }
+
+    if (opcionSeleccionada != CERRAR_PROGRAMA && abrir_diccionario_de_datos(nombreDiccionario) == EXIT_SUCCESS)
+    {
+        if (opcionSeleccionada == NUEVO_DICCIONARIO)
+        {
+            puts("El diccionario de datos ha sido creado");
+        }
+        puts("El diccionario de datos ha sido abierto");
+        short operacionRealizar = SIN_SELECCION;
+        do
+        {
+            mostrar_submenu();
+            operacionRealizar = entrada_de_usuario();
+            system("clear");
+            operar_diccionario((OpcionSubmenu)operacionRealizar, nombreDiccionario);
+        } while (operacionRealizar != REGRESAR);
+        // pasar entidad por referencia, para saber si existe y de existir agregar atributos
     }
 }
 
@@ -68,34 +78,31 @@ void leer_nombre(const char *prompt, char *buffer, size_t tamanio)
     {
         printf("%s", prompt);
     }
-
     if (fgets(buffer, tamanio, stdin) == NULL)
     {
         buffer[0] = '\0';
         return;
     }
-
     buffer[strcspn(buffer, "\n")] = '\0';
 }
 
 void limpiar_buffer(void)
 {
     char caracter;
-    while ((caracter = getchar()) != EOF && caracter != caracter)
+    while ((caracter = getchar()) != EOF && caracter != '\n')
     {
     }
 }
 
-int searchDataEntity(FILE *dataDictionary, long header, const char *entityName)
+void mostrar_submenu(void)
 {
-    long headerValue;
-    fseek(dataDictionary, header, SEEK_SET);
-    fread(&headerValue, sizeof(headerValue), 1, dataDictionary);
-    if (headerValue == -1)
-        return EXIT_FAILURE;
-    char currentEntity[50];
-    long nextHeaderPointer;
-    fseek(dataDictionary, headerValue,SEEK_SET);
-    fread(&currentEntity, 50, 1, dataDictionary);
-
-    }
+    puts("----------Operacion a realizar----------");
+    printf("%i) Imprimir diccionario de datos\n", IMPRIMIR_DICCIONARIO);
+    printf("%i) Nueva entidad\n", NUEVA_ENTIDAD);
+    printf("%i) Eliminar entidad\n", ELIMINAR_ENTIDAD);
+    printf("%i) Modificar entidad\n", MODIFICAR_ENTIDAD);
+    printf("%i) Nuevo atributo\n", NUEVO_ATRIBUTO);
+    printf("%i) Eliminar atributo\n", ELIMINAR_ATRIBUTO);
+    printf("%i) Modificar atributo\n", MODIFICAR_ATRIBUTO);
+    printf("%i) Regresar\n", REGRESAR);
+}
