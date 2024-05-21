@@ -111,7 +111,7 @@ void operar_diccionario(OpcionSubmenu opcionSeleccionada, const char *nombreDicc
         {
             TAtributo atributoTemporal;
             atributoTemporal.ptrSigAtributo = SIN_DIRECCION;
-            printf("Ingresa el tipo del nuevo atributo: ");
+             printf("Ingrese el tipo del nuevo atributo (0: CARACTER, 1: ENTERO, 2: CADENA): ");
             int tipo;
             scanf("%i%*c", &tipo);
             atributoTemporal.tipo = tipo;

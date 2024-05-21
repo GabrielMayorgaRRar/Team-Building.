@@ -31,26 +31,33 @@ int nuevo_atributp(FILE *diccionarioDeDatos, TAtributo *atributoTemporal)
 int agregar_atributo(FILE *diccionarioDeDatos, TAtributo *datoAtributo)
 {
     int operacionResultado = EXIT_SUCCESS;
-    long posicionNuevoAtributo = CABECERA_POSICION_PRINCIPAL;
+    long posicionNuevoAtributo;
 
-    fseek(diccionarioDeDatos, CABECERA_POSICION_PRINCIPAL, SEEK_END);
+    // Mover el puntero de posición al final del archivo
+    fseek(diccionarioDeDatos, 0, SEEK_END);
 
+    // Obtener la posición actual del puntero
     posicionNuevoAtributo = ftell(diccionarioDeDatos);
     datoAtributo->direccionArchivo = posicionNuevoAtributo;
 
-    // Agrega el nombre del atributo
+    // Escribir el nombre del atributo en el archivo
     fwrite(&datoAtributo->nombre, sizeof(char), NOMBRE_ATRIBUTO, diccionarioDeDatos);
-    // Agrega el tipo del atributo
+
+    // Escribir el tipo del atributo en el archivo
     fwrite(&datoAtributo->tipo, sizeof(TipoAtributo), 1, diccionarioDeDatos);
-    // Agrega el tamaño del atributo
+
+    // Escribir el tamaño del atributo en el archivo
     fwrite(&datoAtributo->largo, sizeof(int), 1, diccionarioDeDatos);
-    // Agrega la direccion del siguiente atributo
+
+    // Escribir la dirección del siguiente atributo en el archivo
     fwrite(&datoAtributo->ptrSigAtributo, sizeof(long), 1, diccionarioDeDatos);
 
-    printf("Nuevo atributo \"%s\" agregado en la posicion %li\n", datoAtributo->nombre, datoAtributo->direccionArchivo);
+    printf("Nuevo atributo \"%s\" agregado en la posición %li\n", datoAtributo->nombre, datoAtributo->direccionArchivo);
 
     return operacionResultado;
 }
+
+
 
 void reasignar_punteros_atributo(FILE *diccionarioDeDatos, long ptrAtributoActual, TAtributo *atributoNuevo)
 {
